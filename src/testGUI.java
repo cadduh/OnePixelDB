@@ -162,7 +162,7 @@ public class testGUI extends JFrame{
 				f.pixel.setAliado1(Integer.valueOf(tfAliado1.getText()));
 				f.pixel.setAliado2(Integer.valueOf(tfAliado2.getText()));
 				
-				JOptionPane.showMessageDialog(null,f.atualizarInventario(onePixelDAO.ALTERACAO));
+				JOptionPane.showMessageDialog(null,f.atualizar(onePixelDAO.ALTERACAO));
 				f.atualizarInventario(onePixelDAO.ALTERACAO);
 				limparCampos();
 			}
@@ -173,7 +173,8 @@ public class testGUI extends JFrame{
 				f.buscar();
 				int n = JOptionPane.showConfirmDialog(null, f.pixel.getName(),"Excluir o filme?", JOptionPane.YES_OPTION);
 				if (n == JOptionPane.YES_OPTION){
-					JOptionPane.showMessageDialog(null, f.atualizar(onePixelDAO.EXCLUSAO));
+					JOptionPane.showMessageDialog(null, f.atualizarInventario(onePixelDAO.EXCLUSAO));
+					f.atualizar(onePixelDAO.EXCLUSAO);
 					limparCampos();
 				}
 			}
@@ -191,6 +192,11 @@ public class testGUI extends JFrame{
 		tfGenero.setText("");
 		tfCheckPoint.setText("");
 		tfId.requestFocus();
+		tfPixelR.setText("");
+		tfPixelG.setText("");
+		tfPixelb.setText("");
+		tfAliado1.setText("");
+		tfAliado2.setText("");
 		setBotoes(true,true,false,false,false,false);
 	}
 	public void atualizarCampos(){

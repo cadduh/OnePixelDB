@@ -58,9 +58,8 @@ public class onePixelDAO {
     		   statement.setString(1, pixel.getName());
     		   statement.setString(2, pixel.getGenero());
     		   statement.setString(3, pixel.getCheckpoint());
-
-//    		   statement.setString(5, pixel.getAliado1());
-//    		   statement.setString(6, pixel.getAliado2());
+               System.out.println("Inclusão user"+statement);  
+               
     		}else if(operacao == ALTERACAO) {
     			sql = "UPDATE user set user_name = ?, user_genero = ?, checkpoint = ? WHERE user_id = ? "; //, aliado1 = ? , aliado2 = ?
     			statement = bd.c.prepareStatement(sql);
@@ -68,8 +67,7 @@ public class onePixelDAO {
      		    statement.setString(2, pixel.getGenero());
      		    statement.setString(3, pixel.getCheckpoint());
      		    statement.setString(4, pixel.getId());
-//     		    statement.setString(5, pixel.getAliado1());
-//     		    statement.setString(6, pixel.getAliado2());
+     		    System.out.println("Alteração user"+statement);  
     		}else if(operacao == EXCLUSAO) {
     			sql = "DELETE from user WHERE user_id  = ?";
     			statement = bd.c.prepareStatement(sql);
@@ -101,7 +99,7 @@ public class onePixelDAO {
     			statement.setInt(3,pixel.getPixelB());
     			statement.setInt(4,pixel.getAliado1());
     			statement.setInt(5,pixel.getAliado2());
-    			System.out.println(statement);
+    			System.out.println("Inclusão inventario :"+statement);
     					    			
     		}else if(operacao == ALTERACAO) {
     			sql = "UPDATE inventario set pixel_R = ?,pixel_G = ?,pixel_B = ?,aliado1 = ?,aliado2 = ? WHERE user_id = ? ";
@@ -112,7 +110,7 @@ public class onePixelDAO {
     			statement.setInt(4,pixel.getAliado1());
     			statement.setInt(5,pixel.getAliado2());
     			statement.setString(6,pixel.getId());
-    			System.out.println(statement);
+    			System.out.println("Alteração inventario:"+statement);
     		}else if(operacao == EXCLUSAO) {
     			sql = "DELETE from inventario WHERE user_id = ?";
     			statement = bd.c.prepareStatement(sql);
