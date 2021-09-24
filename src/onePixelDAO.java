@@ -68,14 +68,12 @@ public class onePixelDAO {
      		    statement.setString(2, pixel.getGenero());
      		    statement.setString(3, pixel.getCheckpoint());
      		    statement.setString(4, pixel.getId());
-     		    atualizarInventario(onePixelDAO.ALTERACAO);
 //     		    statement.setString(5, pixel.getAliado1());
 //     		    statement.setString(6, pixel.getAliado2());
     		}else if(operacao == EXCLUSAO) {
     			sql = "DELETE from user WHERE user_id  = ?";
     			statement = bd.c.prepareStatement(sql);
     			statement.setString(1,pixel.getId());
-    			atualizarInventario(onePixelDAO.EXCLUSAO);
     		}
     		if (statement.executeUpdate() == 0) {
 				men = "Falha na operação";
@@ -95,8 +93,9 @@ public class onePixelDAO {
     	men = "Operação realizada com sucesso (Inventário)";
     	try {
     		if(operacao == INCLUSAO) {
-    			sql = "INSERT INTO inventario(pixel_R,pixel_G,pixel_B,aliado1,aliado2) values(?,?,?,?,?)";
+    			sql = "INSERT INTO inventario(user_id,pixel_R,pixel_G,pixel_B,aliado1,aliado2) values((SELECT max(user_id) from user),?,?,?,?,?)";
     			statement = bd.c.prepareStatement(sql);
+//    			statement.setString(1,pixel.getId());
     			statement.setInt(1,pixel.getPixelR());
     			statement.setInt(2,pixel.getPixelG());
     			statement.setInt(3,pixel.getPixelB());
@@ -105,7 +104,7 @@ public class onePixelDAO {
     			System.out.println(statement);
     					    			
     		}else if(operacao == ALTERACAO) {
-    			sql = "UPDATE inventario set pixel_R = ?,pixel_G = ?,pixel_B = ?,aliado1 = ?,aliado2 = ? WHERE user.user_id = ? ";
+    			sql = "UPDATE inventario set pixel_R = ?,pixel_G = ?,pixel_B = ?,aliado1 = ?,aliado2 = ? WHERE user_id = ? ";
     			statement = bd.c.prepareStatement(sql);
     			statement.setInt(1,pixel.getPixelR());
     			statement.setInt(2,pixel.getPixelG());
@@ -113,6 +112,7 @@ public class onePixelDAO {
     			statement.setInt(4,pixel.getAliado1());
     			statement.setInt(5,pixel.getAliado2());
     			statement.setString(6,pixel.getId());
+    			System.out.println(statement);
     		}else if(operacao == EXCLUSAO) {
     			sql = "DELETE from inventario WHERE user_id = ?";
     			statement = bd.c.prepareStatement(sql);
